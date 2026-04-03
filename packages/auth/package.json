@@ -9,7 +9,11 @@
       "default": "./src/*.ts"
     }
   },
-  "scripts": {},
+  "scripts": {
+    "check-types": "tsc -b",
+    "lint": "eslint .",
+    "test": "bun test"
+  },
   "dependencies": {
     "@seller-dashboard/db": "*",
     "@seller-dashboard/env": "*",

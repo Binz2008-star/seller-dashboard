@@ -1,3 +1,15 @@
+import dotenv from "dotenv";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+import { serve } from "@hono/node-server";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenv.config({ path: join(__dirname, "..", "..", ".env.local") });
+dotenv.config({ path: join(__dirname, "..", "..", ".env") });
+dotenv.config();
+
 import { trpcServer } from "@hono/trpc-server";
 import { createContext } from "@seller-dashboard/api/context";
 import { appRouter } from "@seller-dashboard/api/routers/index";
@@ -32,8 +44,34 @@ app.use(
   }),
 );
 
-app.get("/", (c) => {
-  return c.text("OK");
+app.get("/", (c) => c.text("OK"));
+
+const port = Number(env.PORT || 3000);
+
+console.log(`🚀 Server starting on http://localhost:${port}`);
+
+try {
+  serve({
+    fetch: app.fetch,
+    port,
+  });
+
+  console.log(`✅ Server listening on http://localhost:${port}`);
+} catch (error) {
+  console.error("❌ Failed to start server:", error);
+  process.exit(1);
+}
+
+process.on("unhandledRejection", (reason) => {
+  console.error("UNHANDLED REJECTION:", reason);
 });
 
-export default app;
+process.on("uncaughtException", (error) => {
+  console.error("UNCAUGHT EXCEPTION:", error);
+  process.exit(1);
+});
+
+export default {
+  port,
+  fetch: app.fetch,
+};

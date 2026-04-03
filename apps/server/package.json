@@ -3,13 +3,18 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
+    "dev": "node src/server.cjs",
+    "dev:node": "tsx watch src/index.ts",
     "build": "tsdown",
+    "start": "bun run dist/index.mjs",
     "check-types": "tsc -b",
-    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
-    "dev": "bun run --hot src/index.ts",
-    "start": "bun run dist/index.mjs"
+    "lint": "eslint .",
+    "test": "bun test",
+    "verify:prod": "bun run scripts/verify-production.ts",
+    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server"
   },
   "dependencies": {
+    "@hono/node-server": "1.19.12",
     "@hono/trpc-server": "^0.4.0",
     "@seller-dashboard/api": "*",
     "@seller-dashboard/auth": "*",

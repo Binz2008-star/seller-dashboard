@@ -10,18 +10,18 @@
     }
   },
   "scripts": {
-    "db:local": "turso dev --db-file local.db",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
     "db:studio": "drizzle-kit studio",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "bun run src/seed.ts"
   },
   "dependencies": {
-    "@libsql/client": "0.15.15",
     "@seller-dashboard/env": "*",
     "dotenv": "^17.2.2",
     "drizzle-orm": "^0.45.1",
-    "libsql": "0.5.22",
+    "pg": "^8.11.3",
+    "postgres": "^3.4.4",
     "zod": "^4.1.13"
   },
   "devDependencies": {

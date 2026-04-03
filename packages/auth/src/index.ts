@@ -1,18 +1,12 @@
-import { createDb } from "@seller-dashboard/db";
-import * as schema from "@seller-dashboard/db/schema/auth";
+import { createPgPool } from "@seller-dashboard/db";
 import { env } from "@seller-dashboard/env/server";
 import { betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 export function createAuth() {
-  const db = createDb();
+  const db = createPgPool();
 
   return betterAuth({
-    database: drizzleAdapter(db, {
-      provider: "sqlite",
-
-      schema: schema,
-    }),
+    database: db,
     trustedOrigins: [env.CORS_ORIGIN],
     emailAndPassword: {
       enabled: true,
