@@ -1,0 +1,3 @@
+{
+  "extends": "@seller-dashboard/config/tsconfig.base.json"
+}

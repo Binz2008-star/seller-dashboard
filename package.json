@@ -1,0 +1,33 @@
+{
+  "name": "seller-dashboard",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:web": "turbo -F web dev",
+    "dev:server": "turbo -F server dev",
+    "db:push": "turbo -F @seller-dashboard/db db:push",
+    "db:studio": "turbo -F @seller-dashboard/db db:studio",
+    "db:generate": "turbo -F @seller-dashboard/db db:generate",
+    "db:migrate": "turbo -F @seller-dashboard/db db:migrate",
+    "db:local": "turbo -F @seller-dashboard/db db:local"
+  },
+  "dependencies": {
+    "@seller-dashboard/env": "*",
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@seller-dashboard/config": "*",
+    "@types/bun": "^1.3.4",
+    "turbo": "^2.8.12",
+    "typescript": "^5"
+  },
+  "packageManager": "npm@11.6.0"
+}
