@@ -1,0 +1,16 @@
+# UI Layer Ownership
+
+# BFF Implementation
+/src/bff/ @Binz2008-star
+
+# UI Components
+/src/components/ @Binz2008-star
+
+# UI Documentation
+/docs/UI_INTEGRATION_PATTERN.md @Binz2008-star
+
+# Configuration
+/package.json @Binz2008-star
+
+# Integration Clients
+/src/integration/ @Binz2008-star
